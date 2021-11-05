@@ -37,10 +37,11 @@ System.out.println("Input the name of Player " + count);
 
             //deciding who starts
             for(int i=0; i<totalplayers; i++){
-                System.out.print("press enter to roll dice");
+                System.out.println("press 0 to roll dice");
                 while(thrower!=0){
                     thrower=scanner.nextInt();
                 }
+                thrower=1;
             dice1throw=1+dice1.nextInt(6);
             dice2throw=1+dice2.nextInt(6);
             System.out.println("dice 1 face value is " + dice1throw);
