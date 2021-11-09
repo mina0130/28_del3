@@ -56,6 +56,14 @@ System.out.println("Input the name of Player " + count);
             }
             System.out.println("player " + PlayerTurn + " Starts");
 
+
+            //Gameboard
+            GameBoard.getIsOwnable(0);
+            GameBoard.setIsOwned(0);
+            GameBoard.getIsOwned(0);
+            GameBoard.getPrice(0);
+            GameBoard.setOwnedBy(0,0);
+            GameBoard.getOwnedBy(0);
         }
 
 
