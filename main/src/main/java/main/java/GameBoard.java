@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class GameBoard {
 
-// GUI_Field[] fields = new GUI_Field[16];
+GUI_Field[] fields = new GUI_Field[16];
 
 // public void settingcar(GUI_Player player){
  //fields[0].setCar(player, true);}
