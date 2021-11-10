@@ -3,70 +3,92 @@ import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
 import java.util.*;
-import java.util.Random;
-
 public class Monopoly {
 
     public static void main(String[] args) {
 
         GUI gui = new GUI();
-        GUI_Field[] fields = new GUI_Field[16];
         Scanner scanner = new Scanner(System.in);
-        Random dice1 = new Random();
-        Random dice2 = new Random();
+        Die die = new Die();
         boolean lose=false; // bliver true når en spiller har tabt, dvs spillet er slut
         int PlayerTurn=1; //1,2,3 eller 4, afhængig af vis tur det er
-        int sum, dice1throw, dice2throw, totalplayers, previousThrow=0, thrower=1;
+        int sum, dice1throw, dice2throw, totalplayers, previousThrow=0;
 
 
         //her laver vi players
         System.out.println("input Number of Players");
-        totalplayers=scanner.nextInt();
+        totalplayers= gui.getUserInteger("Input Number of Players");
+        while(totalplayers<2 || totalplayers>4){
+            System.out.println("Please input 2, 3, or 4 players");
+            totalplayers=gui.getUserInteger("Please input 2, 3, or 4 players");
+        }
+        int[] currentField = new int [totalplayers];
+        for(int i=0; i<totalplayers; i++){
+            currentField[i]=0;
+        }
         String[] playername = new String[totalplayers];
-
+        gui_fields.GUI_Player[] player = new GUI_Player[totalplayers];
         int count=0;
         for(int i=0; i<totalplayers; i++){
             count++;
-System.out.println("Input the name of Player " + count);
-            playername[i]=scanner.next();
-
+            playername[i]=gui.getUserString("Input the name of Player " + count);
+           player[i]=new GUI_Player(playername[i]);
+           gui.getFields()[0].setCar(player[i], true);
         }
-        for(int i=0; i<totalplayers; i++){
-        }
-
 
             //deciding who starts
+        gui.displayChanceCard("The user obtaining the highest sum will start");
             for(int i=0; i<totalplayers; i++){
-                System.out.println("press 0 to roll dice");
-                while(thrower!=0){
-                    thrower=scanner.nextInt();
-                }
-                thrower=1;
-            dice1throw=1+dice1.nextInt(6);
-            dice2throw=1+dice2.nextInt(6);
-            System.out.println("dice 1 face value is " + dice1throw);
-            System.out.println("dice 2 face value is " + dice2throw);
+                gui.getUserString(playername[i] + " press enter to roll dice");
+                die.roll();
+                dice1throw=die.getDice();
+                die.roll();
+                dice2throw=die.getDice();
             gui.setDice(dice1throw, dice2throw);
             sum=dice1throw+dice2throw;
-            System.out.println("The sum of your throw is " + sum);
+            gui.displayChanceCard("the sum of your throw is " + sum);
             if(sum>previousThrow){
-                PlayerTurn=i+1;
+                PlayerTurn=i;
+            }
+            else if(sum==previousThrow){
+                gui.displayChanceCard("Your throw equals another throw. Please roll again");
+                i--;
             }
             previousThrow=sum;
             }
-            System.out.println("player " + PlayerTurn + " Starts");
 
+            // game flow starts here
+        while(!lose){
+            if(PlayerTurn>=totalplayers){
+                PlayerTurn=0;
+            }
+            gui.getUserString(playername[PlayerTurn] + " press enter to roll dice");
+                die.roll();
+                dice1throw=die.getDice();
+                die.roll();
+                dice2throw=die.getDice();
+                gui.setDice(dice1throw, dice2throw);
+                sum=dice1throw+dice2throw;
+                gui.displayChanceCard("the sum of your throw is " + sum);
+            gui.getFields()[currentField[PlayerTurn]].removeAllCars();
 
-            //Gameboard
-            GameBoard.getIsOwnable(0);
-            GameBoard.setIsOwned(0);
-            GameBoard.getIsOwned(0);
-            GameBoard.getPrice(0);
-            GameBoard.setOwnedBy(0,0);
-            GameBoard.getOwnedBy(0);
+                while(currentField[PlayerTurn]<16 && sum!=0){
+                    if(currentField[PlayerTurn]==15){
+                        currentField[PlayerTurn]=0;
+                    }
+                    currentField[PlayerTurn]++;
+                    sum--;
+                }
+               gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn],true );
+               PlayerTurn++;
+
+               gui.getUserButtonPressed(
+                       "press to roll dice"
+               );
+                }
+            }
+
         }
 
-
-    }
 
 
