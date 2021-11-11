@@ -79,9 +79,13 @@ public static GUI_Field[] fields = new GUI_Field[16];
 return fields;
  }
 
+ public static String getTitle(int fieldnumber){
+     return fields[fieldnumber].getTitle();
+ }
+
 static boolean[] isOwnable = new boolean[16];
 
-public static void SetIsOwnable(int fieldNumber){
+public static void SetIsOwnable(){
   isOwnable[0] = false;
   isOwnable[1] = true;
   isOwnable[2] = false;
@@ -124,9 +128,7 @@ public static void SetIsOwnable(int fieldNumber){
 
  public static void setIsOwned(int fieldNumber) {
   int number = fieldNumber;
-  boolean owned = true;
-
-  isOwned[fieldNumber] = owned;
+  isOwned[fieldNumber] = true;
 
  }
 
