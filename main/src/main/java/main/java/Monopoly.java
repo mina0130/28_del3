@@ -4,7 +4,6 @@ import gui_fields.GUI_Player;
 import gui_main.GUI;
 
 import java.awt.*;
-import java.util.*;
 public class Monopoly {
 
     public static void main(String[] args) {
@@ -132,9 +131,9 @@ GUI gui = new GUI(fields, Color.green);
 
                if(playerBalance[PlayerTurn]<=0){
                    lose=true;
+                   gui.showMessage(playername[PlayerTurn-1] + "'s balance has fallen below 0");
                }
                PlayerTurn++;
-               gui.showMessage(playername[PlayerTurn-1] + "'s balance has fallen below 0");
             }
 
         //deciding who wins
