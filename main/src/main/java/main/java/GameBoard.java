@@ -147,18 +147,19 @@ public static void SetIsOwnable(){
      price [15] = 500;
      return price[fieldNumber]; }
 
- static int[] rent = new int[16]; {
-  rent[1] = 200;
-  rent[3] = 200;
-  rent[5] = 300;
-  rent[7] = 300;
-  rent[9] = 400;
-  rent[11] = 400;
-  rent[13] = 500;
-  rent[15] = 500;
- }
 
- public static int getRent(int fieldNumber){return rent[fieldNumber]; }
+
+ public static int getRent(int fieldNumber){
+     int[] rent = new int[16]; {
+         rent[1] = 200;
+         rent[3] = 200;
+         rent[5] = 300;
+         rent[7] = 300;
+         rent[9] = 400;
+         rent[11] = 400;
+         rent[13] = 500;
+         rent[15] = 500;
+     }return rent[fieldNumber]; }
 
  static int[] ownedBy = new int[16]; {
   ownedBy[1] = 0;
