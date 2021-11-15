@@ -76,6 +76,11 @@ GUI gui = new GUI(fields, Color.green);
             sum = dice1throw + dice2throw;
 
             gui.getFields()[currentField[PlayerTurn]].removeAllCars();
+            for(int i=0; i<totalplayers; i++){
+                if(currentField[i]==currentField[PlayerTurn]){
+                    gui.getFields()[currentField[i]].setCar(player[i], true);
+                }
+            }
 
             while (currentField[PlayerTurn] < 16 && sum != 0) {
                 if (currentField[PlayerTurn] == 15) {
@@ -86,6 +91,7 @@ GUI gui = new GUI(fields, Color.green);
             }
             gui.displayChanceCard(playername[PlayerTurn] + ", You are now on the " + GameBoard.getTitle(currentField[PlayerTurn]) + " field");
             gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn], true);
+
 
             int card;
             if (currentField[PlayerTurn] == 2 | currentField[PlayerTurn] == 6 | currentField[PlayerTurn] == 10 | currentField[PlayerTurn] == 14) {
