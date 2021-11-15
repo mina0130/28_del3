@@ -10,6 +10,7 @@ public class Monopoly {
         String wantToBuy;
 
         GUI_Field[] fields = GameBoard.SetFields();
+        boolean extra=false;
         int løsepenge=0;
 GUI gui = new GUI(fields, Color.green);
         Die die = new Die();
@@ -85,7 +86,58 @@ GUI gui = new GUI(fields, Color.green);
             gui.displayChanceCard(playername[PlayerTurn] + ", You are now on the " + GameBoard.getTitle(currentField[PlayerTurn]) + " field");
                gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn],true );
 
-
+            int card;
+            if(currentField[PlayerTurn]==2 | currentField[PlayerTurn]==6 | currentField[PlayerTurn]==10 | currentField[PlayerTurn]==14) {
+                die.roll();
+                card = die.getDice();
+                die.roll();
+                card = card + die.getDice();
+                switch (card) {
+                    case 2:
+                        gui.displayChanceCard("Ryk til start modtag 200");
+                        currentField[PlayerTurn] = 0;
+                        break;
+                    case 3:
+                        gui.displayChanceCard("Ryk til betalingsfeltet");
+                        currentField[PlayerTurn] = 8;
+                        break;
+                    case 4:
+                        gui.displayChanceCard("Ryk til bowlingcenter");
+                        currentField[PlayerTurn] = 15;
+                        break;
+                    case 5:
+                        gui.displayChanceCard("Ryk til løsepenge");
+                        currentField[PlayerTurn] = 4;
+                        break;
+                    case 6:
+                        gui.displayChanceCard("Du har tabt 500");
+                        playerBalance[PlayerTurn] = Bank.deduct(playerBalance[PlayerTurn], 500);
+                        break;
+                    case 7:
+                        gui.displayChanceCard("du har modtaget 500");
+                        playerBalance[PlayerTurn] = Bank.add(playerBalance[PlayerTurn], 500);
+                        break;
+                    case 8:
+                        gui.displayChanceCard("du har tabt 100");
+                        playerBalance[PlayerTurn] = Bank.deduct(playerBalance[PlayerTurn], 100);
+                        break;
+                    case 9:
+                        gui.displayChanceCard("du har modtaget 50");
+                        playerBalance[PlayerTurn] = Bank.add(playerBalance[PlayerTurn], 50);
+                        break;
+                    case 10:
+                        gui.displayChanceCard("Ryk 2 felter tilbage");
+                        currentField[PlayerTurn] = currentField[PlayerTurn] - 2;
+                        break;
+                    case 11:
+                        gui.displayChanceCard("eksta tur");
+                        extra = true;
+                        break;
+                    case 12:
+                        gui.displayChanceCard("intet sker :)");
+                        break;
+                }
+            }
                if(currentField[PlayerTurn]==0){
                    playerBalance[PlayerTurn]=Bank.add(playerBalance[PlayerTurn], 200);
                    gui.displayChanceCard("You receive 200 cash on start");
@@ -123,8 +175,10 @@ GUI gui = new GUI(fields, Color.green);
                }
                if(currentField[PlayerTurn]==12){
                    gui.displayChanceCard("you get an extra hit");
-                   PlayerTurn--;
+                   extra=true;
                }
+
+
                switch(currentField[PlayerTurn]){
                    case 1,2,3,4,5,6,7,8,9,10,11,13,14,15:  gui.showMessage(playername[PlayerTurn] + ", your balance is now " + playerBalance[PlayerTurn]);
                }
@@ -133,7 +187,8 @@ GUI gui = new GUI(fields, Color.green);
                    lose=true;
                    gui.showMessage(playername[PlayerTurn-1] + "'s balance has fallen below 0");
                }
-               PlayerTurn++;
+               if(!extra){
+               PlayerTurn++;}
             }
 
         //deciding who wins
