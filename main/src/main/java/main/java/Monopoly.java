@@ -63,51 +63,61 @@ GUI gui = new GUI(fields, Color.green);
             gui.displayChanceCard("Player " + (PlayerTurn+1) + " starts");
 
             // game flow starts here
-        while(!lose){
-            if(PlayerTurn>=totalplayers){
-                PlayerTurn=0;
+        while(!lose) {
+            if (PlayerTurn >= totalplayers) {
+                PlayerTurn = 0;
             }
             gui.getUserString(playername[PlayerTurn] + " press enter to roll dice");
-                die.roll();
-                dice1throw=die.getDice();
-                die.roll();
-                dice2throw=die.getDice();
-                gui.setDice(dice1throw, dice2throw);
-                sum=dice1throw+dice2throw;
+            die.roll();
+            dice1throw = die.getDice();
+            die.roll();
+            dice2throw = die.getDice();
+            gui.setDice(dice1throw, dice2throw);
+            sum = dice1throw + dice2throw;
+
             gui.getFields()[currentField[PlayerTurn]].removeAllCars();
 
-                while(currentField[PlayerTurn]<16 && sum!=0){
-                    if(currentField[PlayerTurn]==15){
-                        currentField[PlayerTurn]=0;
-                    }
-                    currentField[PlayerTurn]++;
-                    sum--;
+            while (currentField[PlayerTurn] < 16 && sum != 0) {
+                if (currentField[PlayerTurn] == 15) {
+                    currentField[PlayerTurn] = 0;
                 }
+                currentField[PlayerTurn]++;
+                sum--;
+            }
             gui.displayChanceCard(playername[PlayerTurn] + ", You are now on the " + GameBoard.getTitle(currentField[PlayerTurn]) + " field");
-               gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn],true );
+            gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn], true);
 
             int card;
-            if(currentField[PlayerTurn]==2 | currentField[PlayerTurn]==6 | currentField[PlayerTurn]==10 | currentField[PlayerTurn]==14) {
+            if (currentField[PlayerTurn] == 2 | currentField[PlayerTurn] == 6 | currentField[PlayerTurn] == 10 | currentField[PlayerTurn] == 14) {
                 die.roll();
                 card = die.getDice();
                 die.roll();
                 card = card + die.getDice();
+
                 switch (card) {
                     case 2:
                         gui.displayChanceCard("Ryk til start modtag 200");
+                        gui.getFields()[currentField[PlayerTurn]].removeAllCars();
                         currentField[PlayerTurn] = 0;
+                        gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn], true);
                         break;
                     case 3:
                         gui.displayChanceCard("Ryk til betalingsfeltet");
+                        gui.getFields()[currentField[PlayerTurn]].removeAllCars();
                         currentField[PlayerTurn] = 8;
+                        gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn], true);
                         break;
                     case 4:
                         gui.displayChanceCard("Ryk til bowlingcenter");
+                        gui.getFields()[currentField[PlayerTurn]].removeAllCars();
                         currentField[PlayerTurn] = 15;
+                        gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn], true);
                         break;
                     case 5:
                         gui.displayChanceCard("Ryk til løsepenge");
-                        currentField[PlayerTurn] = 4;
+                        gui.getFields()[currentField[PlayerTurn]].removeAllCars();
+                        currentField[PlayerTurn] = 12;
+                        gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn], true);
                         break;
                     case 6:
                         gui.displayChanceCard("Du har tabt 500");
@@ -127,7 +137,9 @@ GUI gui = new GUI(fields, Color.green);
                         break;
                     case 10:
                         gui.displayChanceCard("Ryk 2 felter tilbage");
+                        gui.getFields()[currentField[PlayerTurn]].removeAllCars();
                         currentField[PlayerTurn] = currentField[PlayerTurn] - 2;
+                        gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn], true);
                         break;
                     case 11:
                         gui.displayChanceCard("eksta tur");
@@ -137,6 +149,7 @@ GUI gui = new GUI(fields, Color.green);
                         gui.displayChanceCard("intet sker :)");
                         break;
                 }
+                gui.showMessage(" ");
             }
                if(currentField[PlayerTurn]==0){
                    playerBalance[PlayerTurn]=Bank.add(playerBalance[PlayerTurn], 200);
@@ -189,6 +202,7 @@ GUI gui = new GUI(fields, Color.green);
                }
                if(!extra){
                PlayerTurn++;}
+               extra=false;
             }
 
         //deciding who wins
