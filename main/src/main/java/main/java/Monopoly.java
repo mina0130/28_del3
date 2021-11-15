@@ -60,7 +60,7 @@ GUI gui = new GUI(fields, Color.green);
             }
             previousThrow=sum;
             }
-            gui.displayChanceCard("Player " + (PlayerTurn+1) + " starts");
+            gui.displayChanceCard(playername[PlayerTurn] + " starts");
 
             // game flow starts here
         while(!lose) {
@@ -76,12 +76,14 @@ GUI gui = new GUI(fields, Color.green);
             sum = dice1throw + dice2throw;
 
             gui.getFields()[currentField[PlayerTurn]].removeAllCars();
+
             for(int i=0; i<totalplayers; i++){
-                if(currentField[i]==currentField[PlayerTurn]){
-                    gui.getFields()[currentField[i]].setCar(player[i], true);
+                if(i!=PlayerTurn) {
+                    if (currentField[i] == currentField[PlayerTurn]) {
+                        gui.getFields()[currentField[i]].setCar(player[i], true);
+                    }
                 }
             }
-
             while (currentField[PlayerTurn] < 16 && sum != 0) {
                 if (currentField[PlayerTurn] == 15) {
                     currentField[PlayerTurn] = 0;
@@ -104,25 +106,53 @@ GUI gui = new GUI(fields, Color.green);
                     case 2:
                         gui.displayChanceCard("Ryk til start modtag 200");
                         gui.getFields()[currentField[PlayerTurn]].removeAllCars();
+                        for(int i=0; i<totalplayers; i++){
+                            if(i!=PlayerTurn) {
+                                if (currentField[i] == currentField[PlayerTurn]) {
+                                    gui.getFields()[currentField[i]].setCar(player[i], true);
+                                }
+                            }
+                        }
                         currentField[PlayerTurn] = 0;
                         gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn], true);
                         break;
                     case 3:
                         gui.displayChanceCard("Ryk til betalingsfeltet");
                         gui.getFields()[currentField[PlayerTurn]].removeAllCars();
+                        for(int i=0; i<totalplayers; i++){
+                            if(i!=PlayerTurn) {
+                                if (currentField[i] == currentField[PlayerTurn]) {
+                                    gui.getFields()[currentField[i]].setCar(player[i], true);
+                                }
+                            }
+                        }
                         currentField[PlayerTurn] = 8;
                         gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn], true);
                         break;
                     case 4:
                         gui.displayChanceCard("Ryk til bowlingcenter");
                         gui.getFields()[currentField[PlayerTurn]].removeAllCars();
+                        for(int i=0; i<totalplayers; i++){
+                            if(i!=PlayerTurn) {
+                                if (currentField[i] == currentField[PlayerTurn]) {
+                                    gui.getFields()[currentField[i]].setCar(player[i], true);
+                                }
+                            }
+                        }
                         currentField[PlayerTurn] = 15;
                         gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn], true);
                         break;
                     case 5:
                         gui.displayChanceCard("Ryk til løsepenge");
                         gui.getFields()[currentField[PlayerTurn]].removeAllCars();
-                        currentField[PlayerTurn] = 12;
+                        for(int i=0; i<totalplayers; i++){
+                            if(i!=PlayerTurn) {
+                                if (currentField[i] == currentField[PlayerTurn]) {
+                                    gui.getFields()[currentField[i]].setCar(player[i], true);
+                                }
+                            }
+                        }
+                        currentField[PlayerTurn] = 4;
                         gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn], true);
                         break;
                     case 6:
@@ -144,6 +174,13 @@ GUI gui = new GUI(fields, Color.green);
                     case 10:
                         gui.displayChanceCard("Ryk 2 felter tilbage");
                         gui.getFields()[currentField[PlayerTurn]].removeAllCars();
+                        for(int i=0; i<totalplayers; i++){
+                            if(i!=PlayerTurn) {
+                                if (currentField[i] == currentField[PlayerTurn]) {
+                                    gui.getFields()[currentField[i]].setCar(player[i], true);
+                                }
+                            }
+                        }
                         currentField[PlayerTurn] = currentField[PlayerTurn] - 2;
                         gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn], true);
                         break;
@@ -163,9 +200,14 @@ GUI gui = new GUI(fields, Color.green);
                }
                if(GameBoard.getIsOwnable(currentField[PlayerTurn])){
                    if(GameBoard.getIsOwned(currentField[PlayerTurn])){
-                       gui.showMessage("the field is owned by player " + playername[GameBoard.getOwnedBy(currentField[PlayerTurn])] + ". " + GameBoard.getRent(currentField[PlayerTurn]) + " rent has been deducted from your account");
-                       playerBalance[PlayerTurn]=Bank.deduct(playerBalance[PlayerTurn], GameBoard.getRent(currentField[PlayerTurn]));
-                       playerBalance[GameBoard.getOwnedBy(currentField[PlayerTurn])]=Bank.add(playerBalance[GameBoard.getOwnedBy(currentField[PlayerTurn])], GameBoard.getRent(currentField[PlayerTurn]));
+                       if(GameBoard.getOwnedBy(currentField[PlayerTurn])!=PlayerTurn) {
+                           gui.showMessage("the field is owned by player " + playername[GameBoard.getOwnedBy(currentField[PlayerTurn])] + ". " + GameBoard.getRent(currentField[PlayerTurn]) + " rent has been deducted from your account");
+                           playerBalance[PlayerTurn] = Bank.deduct(playerBalance[PlayerTurn], GameBoard.getRent(currentField[PlayerTurn]));
+                           playerBalance[GameBoard.getOwnedBy(currentField[PlayerTurn])] = Bank.add(playerBalance[GameBoard.getOwnedBy(currentField[PlayerTurn])], GameBoard.getRent(currentField[PlayerTurn]));
+                           gui.showMessage(playername[GameBoard.getOwnedBy(currentField[PlayerTurn])] + "'s balance is now " + playerBalance[GameBoard.getOwnedBy(currentField[PlayerTurn])]);
+                       }
+                   else if(GameBoard.getOwnedBy(currentField[PlayerTurn])==PlayerTurn){
+                   gui.showMessage("You already own this field"); }
                    }
                    else if(!GameBoard.getIsOwned(currentField[PlayerTurn])){
                       wantToBuy=gui.getUserString("do you want to buy " + GameBoard.getTitle(currentField[PlayerTurn]) + " for " + GameBoard.getPrice(currentField[PlayerTurn]) + "? Type 'yes' or 'no'" );

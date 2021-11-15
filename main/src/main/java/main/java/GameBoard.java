@@ -28,10 +28,10 @@ public static GUI_Field[] fields = new GUI_Field[16];
   fields[3].setTitle("Pizzaria");
   fields[3].setSubText("200kr");
   fields[3].setBackGroundColor(Color.blue);
-  fields[4]=new GUI_Tax();
-  fields[4].setTitle("Jernbane!");
-  fields[4].setSubText("Du har nået jernbanen, du får en EKSTRA tur");
-  fields[4].setBackGroundColor(Color.green);
+  fields[12]=new GUI_Tax();
+  fields[12].setTitle("Jernbane!");
+  fields[12].setSubText("Du har nået jernbanen, du får en EKSTRA tur");
+  fields[12].setBackGroundColor(Color.green);
   fields[5]=new GUI_Street();
   fields[5].setTitle("Museet");
   fields[5].setSubText("300kr");
@@ -60,10 +60,10 @@ public static GUI_Field[] fields = new GUI_Field[16];
   fields[11].setTitle("Zoo");
   fields[11].setSubText("400kr");
   fields[11].setBackGroundColor(Color.blue);
-  fields[12]=new GUI_Tax();
-  fields[12].setTitle("Løsepenge");
-  fields[12].setSubText("Tillykke du modtager penge");
-  fields[12].setBackGroundColor(Color.cyan);
+  fields[4]=new GUI_Tax();
+  fields[4].setTitle("Løsepenge");
+  fields[4].setSubText("Tillykke du modtager penge");
+  fields[4].setBackGroundColor(Color.cyan);
   fields[13]=new GUI_Street();
   fields[13].setTitle("Vandland");
   fields[13].setSubText("500kr");
@@ -127,7 +127,6 @@ public static void SetIsOwnable(){
  }
 
  public static void setIsOwned(int fieldNumber) {
-  int number = fieldNumber;
   isOwned[fieldNumber] = true;
 
  }
@@ -178,30 +177,6 @@ public static void SetIsOwnable(){
  }
 
  public static int getOwnedBy(int fieldNumber) {return ownedBy[fieldNumber]; }
-
- //felter i array
-  {
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street(); };
-
- //tekst til felter
-
-
- public void setFieldsSubText (int fieldNumber, String subText) {fields[fieldNumber].setSubText(subText); }
 
 }
 
