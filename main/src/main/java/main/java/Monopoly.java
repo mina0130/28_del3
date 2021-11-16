@@ -8,8 +8,6 @@ public class Monopoly {
 
     public static void main(String[] args) {
         String wantToBuy;
-
-
         GUI_Field[] fields = GameBoard.SetFields();
         boolean extra=false;
         int løsepenge=0;
@@ -20,14 +18,16 @@ GUI gui = new GUI(fields, Color.green);
         int sum, dice1throw, dice2throw, totalplayers, previousThrow=0;
         GameBoard.SetIsOwnable();
         boolean button=gui.getUserLeftButtonPressed("Choose language", "English", "Dansk");
-        String[] read = new String[51];
+        String[] read = new String[54];
         String file;
         if(button==true){
-            file = "C:\\Users\\minah\\Documents\\University\\CDIO\\oversættelse-til-engelsk.txt"; }
+            file = "C:\\Users\\minah\\Documents\\University\\CDIO\\oversættelse-til-engelsk.txt";
+           fields=GameBoard.SetFieldsEnglish(file);
+            gui = new GUI(fields, Color.green);
+        }
         else {
             file= "C:\\Users\\minah\\Documents\\University\\Introductory Programming\\oversættelse-til-dansk";
         }
-
             BufferedReader reader = null;
             try {
                 reader = new BufferedReader(new FileReader(file));
@@ -37,7 +37,6 @@ GUI gui = new GUI(fields, Color.green);
             for(int i=0; i<51; i++){
                 try {
                     read[i] = reader.readLine();
-                    System.out.println(read[i]);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -185,23 +184,23 @@ GUI gui = new GUI(fields, Color.green);
                         gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn], true);
                         break;
                     case 6:
-                        gui.displayChanceCard("Du har tabt 500");
+                        gui.displayChanceCard(read[13]);
                         playerBalance[PlayerTurn] = Bank.deduct(playerBalance[PlayerTurn], 500);
                         break;
                     case 7:
-                        gui.displayChanceCard("du har modtaget 500");
+                        gui.displayChanceCard(read[14]);
                         playerBalance[PlayerTurn] = Bank.add(playerBalance[PlayerTurn], 500);
                         break;
                     case 8:
-                        gui.displayChanceCard("du har tabt 100");
+                        gui.displayChanceCard(read[15]);
                         playerBalance[PlayerTurn] = Bank.deduct(playerBalance[PlayerTurn], 100);
                         break;
                     case 9:
-                        gui.displayChanceCard("du har modtaget 50");
+                        gui.displayChanceCard(read[16]);
                         playerBalance[PlayerTurn] = Bank.add(playerBalance[PlayerTurn], 50);
                         break;
                     case 10:
-                        gui.displayChanceCard("Ryk 2 felter tilbage");
+                        gui.displayChanceCard(read[17]);
                         gui.getFields()[currentField[PlayerTurn]].removeAllCars();
                         for(int i=0; i<totalplayers; i++){
                             if(i!=PlayerTurn) {
@@ -214,11 +213,11 @@ GUI gui = new GUI(fields, Color.green);
                         gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn], true);
                         break;
                     case 11:
-                        gui.displayChanceCard("eksta tur");
+                        gui.displayChanceCard(read[18]);
                         extra = true;
                         break;
                     case 12:
-                        gui.displayChanceCard("intet sker :)");
+                        gui.displayChanceCard(read[19]);
                         break;
                 }
                 gui.showMessage(" ");

@@ -7,26 +7,17 @@ your throw equals another throw. Please throw again
 starts 
 you are now on the 
 field
-Chancecard2			Move to Start and recieve 200kr
-Chancecard3			Move to the Deposit Cash field
-Chancecard4			Move to Bowlingcentre
-Chancecard5			Move to Loose Money field
-Chancecard6			You lose 500kr
-Chancecard7			You recieve 500kr
-Chancecard8			You lose 100kr
-Chancecard9			You recieve 50kr
-Chancecard10		Move 2 fields backwards
-Chancecard11		Extra turn
-Chancecard12		Nothing happens
-
-Inputs:
-Yes	Yes
-No	No
-
-
-
-
-
+Move to Start and recieve 200kr
+Move to the Deposit Cash field
+Move to Bowlingcentre
+Move to Loose Money field
+You lose 500kr
+You recieve 500kr
+You lose 100kr
+You recieve 50kr
+Move 2 fields backwards
+Extra turn
+Nothing happens
 AmusementFieldCinema		You are now on the Cinema field
 AmusementFieldPizzaria		You are now on the Pizzaria field
 AmusementFieldMuseum		You are now on the Museum field
@@ -43,30 +34,20 @@ BuyCasino			Do you want to buy Casino for 400kr? Write yes or no
 BuyZoo			Do you want to buy Zoo for 400kr? Write yes or no
 BuyWaterpark		Do you want to buy Waterpark for 500kr? Write yes or no
 BuyBowlingcentre	Do you want to buy Bowlingcentre for 500kr? Write yes or no
-
 Balance 			Your balance is now x
 LooseMoneyFieldEmpty	You are on the Loose Money field. Unfortunately the field is empty.
-
 LooseMoneyField		You recieve x kr
 Railway			You get an extra hit
 ChanceField			You are on the CHANCE? Field
 DepositCashField	You are on the Deposit Cash field. 200kr are being deposited from your balance
-
 RentCinema	The field is owned by another player. 200kr rent has been deducted from your account.
-
 RentPizzaria		The field is owned by another player. 200kr rent has been deducted from your account.
-
 RentMuseum		The field is owned by another player. 300kr rent has been deducted from your account.
-
 RentTivoli		The field is owned by another player. 300kr rent has been deducted from your account.
-
 RentCasino		The field is owned by another player. 400kr rent has been deducted from your account.
-
 RentZoo		The field is owned by another player. 400kr rent has been deducted from your account.
-
 The field is owned by another player. 500kr rent has been deducted from your account.
-
 The field is owned by another player. 500kr rent has been deducted from your account.
-
 Start
 Recieve 200kr
+cinema

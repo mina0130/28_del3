@@ -10,9 +10,9 @@ public class GameBoard {
 public static GUI_Field[] fields = new GUI_Field[16];
 
 public static String file;
-public static void setfile(String files){
-    file = files;
-}
+public static String[] read = new String[54];
+
+   static BufferedReader reader = null;
 
 
 // public void settingcar(GUI_Player player){
@@ -20,8 +20,8 @@ public static void setfile(String files){
 
  public static gui_fields.GUI_Field[] SetFields(){
      fields[0]=new GUI_Start();
-     fields[0].setTitle(read[71]);
-     fields[0].setSubText("Modtag 200kr");
+     fields[0].setTitle("Start");
+     fields[0].setSubText("modtag 200");
      fields[0].setBackGroundColor(Color.white);
      fields[1]=new GUI_Street();
   fields[1].setTitle("Biografen");
@@ -86,7 +86,95 @@ public static void setfile(String files){
 return fields;
  }
 
- public String toString(){
+    public static gui_fields.GUI_Field[] SetFieldsEnglish(String files){
+        file = files;
+
+        try {
+            reader = new BufferedReader(new FileReader(file));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        for(int i=0; i<54; i++){
+            try {
+                read[i] = reader.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        fields[0]=new GUI_Start();
+        fields[0].setTitle(read[6]);
+        fields[0].setSubText(read[51]);
+        fields[0].setBackGroundColor(Color.white);
+        fields[1]=new GUI_Street();
+        fields[1].setTitle(read[52]);
+        fields[1].setSubText("200kr");
+        fields[1].setBackGroundColor(Color.blue);
+        fields[2]=new GUI_Chance();
+        fields[2].setTitle("CHANCE?");
+        fields[2].setSubText("");
+        fields[2].setBackGroundColor(Color.orange);
+        fields[3]=new GUI_Street();
+        fields[3].setTitle("Pizzaria");
+        fields[3].setSubText("200kr");
+        fields[3].setBackGroundColor(Color.blue);
+        fields[12]=new GUI_Tax();
+        fields[12].setTitle("Jernbane!");
+        fields[12].setSubText("Du har nået jernbanen, du får en EKSTRA tur");
+        fields[12].setBackGroundColor(Color.green);
+        fields[5]=new GUI_Street();
+        fields[5].setTitle("Museet");
+        fields[5].setSubText("300kr");
+        fields[5].setBackGroundColor(Color.blue);
+        fields[6]=new GUI_Chance();
+        fields[6].setTitle("CHANCE?");
+        fields[6].setSubText("");
+        fields[6].setBackGroundColor(Color.orange);
+        fields[7]=new GUI_Street();
+        fields[7].setTitle("Tivoli");
+        fields[7].setSubText("300kr");
+        fields[7].setBackGroundColor(Color.blue);
+        fields[8]=new GUI_Tax();
+        fields[8].setTitle("Betal 200kr!");
+        fields[8].setSubText("Du skal dsv betale en vejafgift på 200kr");
+        fields[8].setBackGroundColor(Color.red);
+        fields[9]=new GUI_Street();
+        fields[9].setTitle("Casino");
+        fields[9].setSubText("400kr");
+        fields[9].setBackGroundColor(Color.blue);
+        fields[10]=new GUI_Chance();
+        fields[10].setTitle("CHANCE?");
+        fields[10].setSubText("");
+        fields[10].setBackGroundColor(Color.orange);
+        fields[11]=new GUI_Street();
+        fields[11].setTitle("Zoo");
+        fields[11].setSubText("400kr");
+        fields[11].setBackGroundColor(Color.blue);
+        fields[4]=new GUI_Tax();
+        fields[4].setTitle("Løsepenge");
+        fields[4].setSubText("Tillykke du modtager penge");
+        fields[4].setBackGroundColor(Color.cyan);
+        fields[13]=new GUI_Street();
+        fields[13].setTitle("Vandland");
+        fields[13].setSubText("500kr");
+        fields[13].setBackGroundColor(Color.blue);
+        fields[14]=new GUI_Chance();
+        fields[14].setTitle("CHANCE?");
+        fields[14].setSubText("");
+        fields[14].setBackGroundColor(Color.orange);
+        fields[15]=new GUI_Street();
+        fields[15].setTitle("Bowlingcenter");
+        fields[15].setSubText("500kr");
+        fields[15].setBackGroundColor(Color.blue);
+        return fields;
+    }
+
+
+    public String toString(){
      return fields.toString();
  }
 
