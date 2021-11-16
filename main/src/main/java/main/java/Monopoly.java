@@ -2,12 +2,21 @@ package main.java;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
-
 import java.awt.*;
+import java.io.*;
 public class Monopoly {
 
     public static void main(String[] args) {
         String wantToBuy;
+        String[] read = new String[51];
+        String file = "C:\\Users\\minah\\Documents\\University\\CDIO\\oversættelse-til-engelsk.txt";
+
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader(file));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         GUI_Field[] fields = GameBoard.SetFields();
         boolean extra=false;
@@ -18,9 +27,24 @@ GUI gui = new GUI(fields, Color.green);
         int PlayerTurn=1; //1,2,3 eller 4, afhængig af vis tur det er
         int sum, dice1throw, dice2throw, totalplayers, previousThrow=0;
         GameBoard.SetIsOwnable();
+        boolean button=gui.getUserLeftButtonPressed("Choose language", "English", "Dansk");
+        if(button==true){
+            for(int i=0; i<51; i++){
+                try {
+                    read[i] = reader.readLine();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            try {
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         //her laver vi players
-        totalplayers= gui.getUserInteger("Input Number of Players");
+        totalplayers= gui.getUserInteger(read[0]);
         while(totalplayers<2 || totalplayers>4){
             System.out.println("Please input 2, 3, or 4 players");
             totalplayers=gui.getUserInteger("Please input 2, 3, or 4 players");

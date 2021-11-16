@@ -79,6 +79,10 @@ public static GUI_Field[] fields = new GUI_Field[16];
 return fields;
  }
 
+ public String toString(){
+     return fields.toString();
+ }
+
  public static String getTitle(int fieldnumber){
      return fields[fieldnumber].getTitle();
  }

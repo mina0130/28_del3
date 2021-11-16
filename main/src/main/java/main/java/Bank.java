@@ -1,6 +1,7 @@
 package main.java;
 public class Bank {
 
+
     public static int deduct(int currentbalance, int modification){
         return currentbalance-modification;
     }
