@@ -3,17 +3,24 @@ import gui_fields.*;
 import gui_main.GUI;
 
 import java.awt.*;
+import java.io.*;
 
 public class GameBoard {
 
 public static GUI_Field[] fields = new GUI_Field[16];
+
+public static String file;
+public static void setfile(String files){
+    file = files;
+}
+
 
 // public void settingcar(GUI_Player player){
  //fields[0].setCar(player, true);}
 
  public static gui_fields.GUI_Field[] SetFields(){
      fields[0]=new GUI_Start();
-     fields[0].setTitle("Start");
+     fields[0].setTitle(read[71]);
      fields[0].setSubText("Modtag 200kr");
      fields[0].setBackGroundColor(Color.white);
      fields[1]=new GUI_Street();

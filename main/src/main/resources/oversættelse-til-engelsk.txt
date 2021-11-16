@@ -64,7 +64,9 @@ RentCasino		The field is owned by another player. 400kr rent has been deducted f
 
 RentZoo		The field is owned by another player. 400kr rent has been deducted from your account.
 
-RentWaterpark		The field is owned by another player. 500kr rent has been deducted from your account.
+The field is owned by another player. 500kr rent has been deducted from your account.
 
-RentBowlingcentre		The field is owned by another player. 500kr rent has been deducted from your account.
+The field is owned by another player. 500kr rent has been deducted from your account.
 
+Start
+Recieve 200kr
