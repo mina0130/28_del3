@@ -8,15 +8,7 @@ public class Monopoly {
 
     public static void main(String[] args) {
         String wantToBuy;
-        String[] read = new String[51];
-        String file = "C:\\Users\\minah\\Documents\\University\\CDIO\\oversættelse-til-engelsk.txt";
 
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new FileReader(file));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
 
         GUI_Field[] fields = GameBoard.SetFields();
         boolean extra=false;
@@ -28,10 +20,24 @@ GUI gui = new GUI(fields, Color.green);
         int sum, dice1throw, dice2throw, totalplayers, previousThrow=0;
         GameBoard.SetIsOwnable();
         boolean button=gui.getUserLeftButtonPressed("Choose language", "English", "Dansk");
+        String[] read = new String[51];
+        String file;
         if(button==true){
+            file = "C:\\Users\\minah\\Documents\\University\\CDIO\\oversættelse-til-engelsk.txt"; }
+        else {
+            file= "C:\\Users\\minah\\Documents\\University\\Introductory Programming\\oversættelse-til-dansk";
+        }
+
+            BufferedReader reader = null;
+            try {
+                reader = new BufferedReader(new FileReader(file));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
             for(int i=0; i<51; i++){
                 try {
                     read[i] = reader.readLine();
+                    System.out.println(read[i]);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -41,13 +47,12 @@ GUI gui = new GUI(fields, Color.green);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+
 
         //her laver vi players
         totalplayers= gui.getUserInteger(read[0]);
         while(totalplayers<2 || totalplayers>4){
-            System.out.println("Please input 2, 3, or 4 players");
-            totalplayers=gui.getUserInteger("Please input 2, 3, or 4 players");
+            totalplayers=gui.getUserInteger(read[2]);
         }
         int[] currentField = new int [totalplayers];
         for(int i=0; i<totalplayers; i++){
@@ -59,16 +64,16 @@ GUI gui = new GUI(fields, Color.green);
         int count=0;
         for(int i=0; i<totalplayers; i++){
             count++;
-            playername[i]=gui.getUserString("Input the name of Player " + count);
+            playername[i]=gui.getUserString(read[1] + " " + count);
            player[i]=new GUI_Player(playername[i]);
            gui.getFields()[0].setCar(player[i], true);
            playerBalance[i]=3500;
         }
 
             //deciding who starts
-        gui.showMessage("The user obtaining the highest sum will start");
+        gui.showMessage(read[3]);
             for(int i=0; i<totalplayers; i++){
-                gui.getUserString(playername[i] + " press enter to roll dice");
+                gui.getUserString(playername[i] + " " + read[4]);
                 die.roll();
                 dice1throw=die.getDice();
                 die.roll();
@@ -79,19 +84,19 @@ GUI gui = new GUI(fields, Color.green);
                 PlayerTurn=i;
             }
             else if(sum==previousThrow){
-                gui.showMessage("Your throw equals another throw. Please roll again");
+                gui.showMessage(read[5]);
                 i--;
             }
             previousThrow=sum;
             }
-            gui.displayChanceCard(playername[PlayerTurn] + " starts");
+            gui.displayChanceCard(playername[PlayerTurn] + read[6]);
 
             // game flow starts here
         while(!lose) {
             if (PlayerTurn >= totalplayers) {
                 PlayerTurn = 0;
             }
-            gui.getUserString(playername[PlayerTurn] + " press enter to roll dice");
+            gui.getUserString(playername[PlayerTurn] + " " + read[4]);
             die.roll();
             dice1throw = die.getDice();
             die.roll();
@@ -115,7 +120,7 @@ GUI gui = new GUI(fields, Color.green);
                 currentField[PlayerTurn]++;
                 sum--;
             }
-            gui.displayChanceCard(playername[PlayerTurn] + ", You are now on the " + GameBoard.getTitle(currentField[PlayerTurn]) + " field");
+            gui.displayChanceCard(playername[PlayerTurn] + " " + read[7] + " " + GameBoard.getTitle(currentField[PlayerTurn]) + " " + read[8]);
             gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn], true);
 
 
