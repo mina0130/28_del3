@@ -133,7 +133,7 @@ GUI gui = new GUI(fields, Color.green);
 
                 switch (card) {
                     case 2:
-                        gui.displayChanceCard("Ryk til start modtag 200");
+                        gui.displayChanceCard(read[9]);
                         gui.getFields()[currentField[PlayerTurn]].removeAllCars();
                         for(int i=0; i<totalplayers; i++){
                             if(i!=PlayerTurn) {
@@ -146,7 +146,7 @@ GUI gui = new GUI(fields, Color.green);
                         gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn], true);
                         break;
                     case 3:
-                        gui.displayChanceCard("Ryk til betalingsfeltet");
+                        gui.displayChanceCard(read[10]);
                         gui.getFields()[currentField[PlayerTurn]].removeAllCars();
                         for(int i=0; i<totalplayers; i++){
                             if(i!=PlayerTurn) {
@@ -159,7 +159,7 @@ GUI gui = new GUI(fields, Color.green);
                         gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn], true);
                         break;
                     case 4:
-                        gui.displayChanceCard("Ryk til bowlingcenter");
+                        gui.displayChanceCard(read[11]);
                         gui.getFields()[currentField[PlayerTurn]].removeAllCars();
                         for(int i=0; i<totalplayers; i++){
                             if(i!=PlayerTurn) {
@@ -172,7 +172,7 @@ GUI gui = new GUI(fields, Color.green);
                         gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn], true);
                         break;
                     case 5:
-                        gui.displayChanceCard("Ryk til løsepenge");
+                        gui.displayChanceCard(read[12]);
                         gui.getFields()[currentField[PlayerTurn]].removeAllCars();
                         for(int i=0; i<totalplayers; i++){
                             if(i!=PlayerTurn) {
