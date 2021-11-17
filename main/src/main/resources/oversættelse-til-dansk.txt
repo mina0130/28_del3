@@ -1,13 +1,13 @@
-InputPlayers			Indsæt antal spillere
-InputPlayer1name		Indsæt spiller 1’s navn
-InputPlayer2name		Indsæt spiller 2’s navn
-HighestSum			Spilleren med det højeste slag starter spillet
-EnterToRoll			Spiller x tryk enter for at slå med terninger
-PlayerXStarts			Spiller x starter
+Indsæt antal spillere
+Indsæt navn på spiller
+Indtast venligst 2, 3 eller 4 spillere
+Spilleren med det højeste slag starter spillet
+tryk enter for at slå med terningerne
+dit kast er det samme som en anden spillers kast. Kast venligst igen
 starter
 du er nu på
 feltet
-Ryk til start og modtag 200kr
+du modtager 200kr på start feltet
 Ryk til betalingsfeltet
 Ryk til Bowlingcenter
 Ryk til Løsepenge
@@ -18,46 +18,21 @@ Du har modtaget 50kr
 Ryk 2 felter tilbage
 Ekstra tur
 Intet sker
-AmusementFieldCinema		Du er landet på Biograf feltet
-AmusementFieldPizzaria		Du er landet på Pizzaria feltet
-AmusementFieldMuseum		Du er landet på Museum feltet
-AmusementFieldTivoli		Du er landet på Tivoli feltet
-AmusementFieldCasino		Du er landet på Casino feltet
-AmusementFieldZoo		Du er landet på Zoo feltet
-AmusementFieldWaterpark	Du er landet på Vandland feltet
-AmusementFieldBowlingcentre	Du er landet på Bowlingcenter feltet
-BuyCinema			Vil du købe Biografen for 200kr? Skriv ja eller nej
-BuyPizzaria			Vil du købe Pizzariaet for 200kr? Skriv ja eller nej
-BuyMuseum			Vil du købe Museet for 300kr? Skriv ja eller nej
-BuyTivoli			Vil du købe Tivoli for 300kr? Skriv ja eller nej
-BuyCasino			Vil du købe Casino for 400kr? Skriv ja eller nej
-BuyZoo			Vil du købe Zoo for 400kr? Skriv ja eller nej
-BuyWaterpark		Vil du købe Vandlandet for 500kr? Skriv ja eller nej
-BuyBowlingcentre		Vil du købe Bowling centeret for 500kr? Skriv ja eller nej
-Balance 			Din balance er nu x kr
-LooseMoneyFieldEmpty		Du er landet på Løsepenge feltet. Desværre er feltet tomt
-LooseMoneyField		Du modtager x kr
-Railway			Du får en ekstra tur
-ChanceField			Du er nu på et CHANCE? Felt
-DepositCashField	Du er landet på Betal 200kr feltet. 200 kr er blevet trukket fra din balance.
+feltet er ejet af spiller
+s balance er nu
+du ejer allerede dette felt
+modtag 200
+leje er trukket fra din konto
+vil du gerne købe
+tast "ja" eller "nej"
+ja
+nej
+Du er landet på løsepenge feltet. 200 er blevet tilføjet til din balance
+Du er landet på løsepenge feltet. Feltet er desværre tomt
+Du er landet på betalingsfeltet. 200 er blevet trukket fra din konto
+Du får en ekstra tur
+s balance er under 0
+vinderen er spiller
 
-RentCinema	Dette felt er ejet af en anden spiller. 200kr leje er blevet trukket fra din balance
 
-RentPizzaria	Dette felt er ejet af en anden spiller. 200kr leje er blevet trukket fra din balance
 
-RentMuseum	Dette felt er ejet af en anden spiller. 300kr leje er blevet trukket fra din balance
-
-RentTivoli	Dette felt er ejet af en anden spiller. 300kr leje er blevet trukket fra din balance
-
-RentCasino	Dette felt er ejet af en anden spiller. 400kr leje er blevet trukket fra din balance
-
-RentZoo	Dette felt er ejet af en anden spiller. 400kr leje er blevet trukket fra din balance
-
-RentWaterpark	Dette felt er ejet af en anden spiller. 500kr leje er blevet trukket fra din balance
-
-RentBowlingcentre	Dette felt er ejet af en anden spiller. 500kr leje er blevet trukket fra din balance
-
-Ja
-Nej
-OK
-Slår med terninger
