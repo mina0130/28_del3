@@ -1,0 +1,39 @@
+Input amount of players 
+Input the name of player 
+please input 2, 3, or 4 players 
+The player obtaining the highest sum, will start the game 
+push enter to roll the dice 
+your throw equals another throw. Please throw again 
+starts 
+you are now on the 
+field
+you recieve 200kr on start
+Move to the Deposit Cash field
+Move to Bowlingcentre
+Move to Loose Money field
+You lose 500kr
+You recieve 500kr
+You lose 100kr
+You recieve 50kr
+Move 2 fields backwards
+Extra turn
+Nothing happens
+The field is owned by player
+'s balance is now
+you already own this field
+Recieve 200kr
+rent has been deducted from your account
+do you want to buy
+type "yes" or "no"
+yes
+no
+you have landed on the loose money field. 200 has been added to your account
+you have landed on the loose money field. Unfortunately the field is empty
+You have landed on the 'deposit cash' field. 200 has been deducted from your account
+you get an extra throw
+'s balance has fallen below 0
+the winner is player
+
+
+
+

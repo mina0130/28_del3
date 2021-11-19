@@ -1,0 +1,38 @@
+Indsæt antal spillere
+Indsæt navn på spiller
+Indtast venligst 2, 3 eller 4 spillere
+Spilleren med det højeste slag starter spillet
+tryk enter for at slå med terningerne
+dit kast er det samme som en anden spillers kast. Kast venligst igen
+starter
+du er nu på
+feltet
+du modtager 200kr på start feltet
+Ryk til betalingsfeltet
+Ryk til Bowlingcenter
+Ryk til Løsepenge
+Du har tabt 500kr
+Du har modtaget 500kr
+Du har tabt 100kr
+Du har modtaget 50kr
+Ryk 2 felter tilbage
+Ekstra tur
+Intet sker
+feltet er ejet af spiller
+s balance er nu
+du ejer allerede dette felt
+modtag 200
+leje er trukket fra din konto
+vil du gerne købe
+tast "ja" eller "nej"
+ja
+nej
+Du er landet på løsepenge feltet. 200 er blevet tilføjet til din balance
+Du er landet på løsepenge feltet. Feltet er desværre tomt
+Du er landet på betalingsfeltet. 200 er blevet trukket fra din konto
+Du får en ekstra tur
+s balance er under 0
+vinderen er spiller
+
+
+
