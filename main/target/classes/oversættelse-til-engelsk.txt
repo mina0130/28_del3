@@ -33,6 +33,57 @@ You have landed on the 'deposit cash' field. 200 has been deducted from your acc
 you get an extra throw
 's balance has fallen below 0
 the winner is player
+AmusementFieldCinema		You are now on the Cinema field
+AmusementFieldPizzaria		You are now on the Pizzaria field
+AmusementFieldMuseum		You are now on the Museum field
+AmusementFieldTivoli		You are now on the Tivoli field
+AmusementFieldCasino		You are now on the Casino field
+AmusementFieldZoo		You are now on the Zoo field
+AmusementFieldWaterpark	You are now on the Waterpark field
+AmusementFieldBowlingcentre	You are now on the Bowlingcentre field
+BuyCinema			Do you want to buy Cinema for 200kr? Write yes or no
+BuyPizzaria			Do you want to buy Pizzaria for 200kr? Write yes or no
+BuyMuseum			Do you want to buy Museum for 300kr? Write yes or no
+BuyTivoli			Do you want to buy Tivoli for 300kr? Write yes or no
+BuyCasino			Do you want to buy Casino for 400kr? Write yes or no
+BuyZoo			Do you want to buy Zoo for 400kr? Write yes or no
+BuyWaterpark		Do you want to buy Waterpark for 500kr? Write yes or no
+BuyBowlingcentre	Do you want to buy Bowlingcentre for 500kr? Write yes or no
+Balance 			Your balance is now x
+LooseMoneyFieldEmpty	You are on the Loose Money field. Unfortunately the field is empty.
+LooseMoneyField		You recieve x kr
+Railway			You get an extra hit
+ChanceField			You are on the CHANCE? Field
+DepositCashField	You are on the Deposit Cash field. 200kr are being deposited from your balance
+RentCinema	The field is owned by another player. 200kr rent has been deducted from your account.
+RentPizzaria		The field is owned by another player. 200kr rent has been deducted from your account.
+RentMuseum		The field is owned by another player. 300kr rent has been deducted from your account.
+RentTivoli		The field is owned by another player. 300kr rent has been deducted from your account.
+RentCasino		The field is owned by another player. 400kr rent has been deducted from your account.
+RentZoo		The field is owned by another player. 400kr rent has been deducted from your account.
+The field is owned by another player. 500kr rent has been deducted from your account.
+The field is owned by another player. 500kr rent has been deducted from your account.
+Start
+Recieve 200kr
+cinema
+200kr
+Chance?
+Pizzaria
+Railway
+You have reached the railway, you get an extra hit
+Museum
+300kr
+Tivoli
+Pay 300kr!
+You have to pay a toll on 200kr
+Casino
+400kr
+Zoo
+Loose Money
+Congratulations you recieve money
+Waterpark
+500kr
+Bowlingcentre
 
 
 

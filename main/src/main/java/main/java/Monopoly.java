@@ -22,7 +22,7 @@ GUI gui = new GUI(fields, Color.green);
         int sum, dice1throw, dice2throw, totalplayers, previousThrow=0;
         GameBoard.SetIsOwnable();
         boolean button=gui.getUserLeftButtonPressed("Choose language", "English", "Dansk");
-        String[] read = new String[63];
+        String[] read = new String[86];
         if(button==true){
             file = "main/src/main/resources/oversættelse-til-engelsk.txt";
       //     fields=GameBoard.SetFieldsEnglish(file);
