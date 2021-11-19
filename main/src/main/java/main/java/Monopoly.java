@@ -8,6 +8,7 @@ public class Monopoly {
 
     public static void main(String[] args) {
         String wantToBuy;
+        String file;
         for (int i = 0; i < GameBoard.read.length; i++) {
             GameBoard.read[i] = "";
         }
@@ -22,7 +23,6 @@ GUI gui = new GUI(fields, Color.green);
         GameBoard.SetIsOwnable();
         boolean button=gui.getUserLeftButtonPressed("Choose language", "English", "Dansk");
         String[] read = new String[63];
-        String file;
         if(button==true){
             file = "main/src/main/resources/oversættelse-til-engelsk.txt";
       //     fields=GameBoard.SetFieldsEnglish(file);
@@ -93,7 +93,7 @@ GUI gui = new GUI(fields, Color.green);
             }
             previousThrow=sum;
             }
-            gui.displayChanceCard(playername[PlayerTurn] + read[6]);
+            gui.displayChanceCard(playername[PlayerTurn] + " " + read[6]);
 
             // game flow starts here
         while(!lose) {
@@ -229,24 +229,24 @@ GUI gui = new GUI(fields, Color.green);
             }
                if(currentField[PlayerTurn]==0){
                    playerBalance[PlayerTurn]=Bank.add(playerBalance[PlayerTurn], 200);
-                   gui.displayChanceCard("You receive 200 cash on start");
+                   gui.displayChanceCard(read[9]);
                }
                if(GameBoard.getIsOwnable(currentField[PlayerTurn])){
                    if(GameBoard.getIsOwned(currentField[PlayerTurn])){
                        if(GameBoard.getOwnedBy(currentField[PlayerTurn])!=PlayerTurn) {
-                           gui.showMessage("the field is owned by player " + playername[GameBoard.getOwnedBy(currentField[PlayerTurn])] + ". " + GameBoard.getRent(currentField[PlayerTurn]) + " rent has been deducted from your account");
+                           gui.showMessage(read[20] + " " + playername[GameBoard.getOwnedBy(currentField[PlayerTurn])] + ". " + GameBoard.getRent(currentField[PlayerTurn]) + " " + read[24]);
                            playerBalance[PlayerTurn] = Bank.deduct(playerBalance[PlayerTurn], GameBoard.getRent(currentField[PlayerTurn]));
                            playerBalance[GameBoard.getOwnedBy(currentField[PlayerTurn])] = Bank.add(playerBalance[GameBoard.getOwnedBy(currentField[PlayerTurn])], GameBoard.getRent(currentField[PlayerTurn]));
-                           gui.showMessage(playername[GameBoard.getOwnedBy(currentField[PlayerTurn])] + "'s balance is now " + playerBalance[GameBoard.getOwnedBy(currentField[PlayerTurn])]);
+                           gui.showMessage(playername[GameBoard.getOwnedBy(currentField[PlayerTurn])] + read[21] + " " + playerBalance[GameBoard.getOwnedBy(currentField[PlayerTurn])]);
                        }
                    else if(GameBoard.getOwnedBy(currentField[PlayerTurn])==PlayerTurn){
-                   gui.showMessage("You already own this field"); }
+                   gui.showMessage(read[22]); }
                    }
                    else if(!GameBoard.getIsOwned(currentField[PlayerTurn])){
-                      wantToBuy=gui.getUserString("do you want to buy " + GameBoard.getTitle(currentField[PlayerTurn]) + " for " + GameBoard.getPrice(currentField[PlayerTurn]) + "? Type 'yes' or 'no'" );
-                      while(!wantToBuy.equals("yes") && !wantToBuy.equals("no"))
-                          wantToBuy=gui.getUserString("please type either 'yes' or 'no' ");
-                      if(wantToBuy.equals("yes")){
+                      wantToBuy=gui.getUserString(  read[25] + " " + GameBoard.getTitle(currentField[PlayerTurn]) + " for " + GameBoard.getPrice(currentField[PlayerTurn]) + "? " + read[26] );
+                      while(!wantToBuy.equals(read[27]) && !wantToBuy.equals(read[28]))
+                          wantToBuy=gui.getUserString(read[26]);
+                      if(wantToBuy.equals(read[27])){
                           playerBalance[PlayerTurn]=Bank.deduct(playerBalance[PlayerTurn], GameBoard.getPrice(currentField[PlayerTurn]));
                           GameBoard.setIsOwned(currentField[PlayerTurn]);
                           GameBoard.setOwnedBy(currentField[PlayerTurn], PlayerTurn);
@@ -255,31 +255,31 @@ GUI gui = new GUI(fields, Color.green);
                 }
                if(currentField[PlayerTurn]==4){
                    if(løsepenge>=200){
-                   gui.displayChanceCard("You have landed on the loose money field. 200 has been added to your balance");
+                   gui.displayChanceCard(read[29]);
                    løsepenge=løsepenge-200;
                    playerBalance[PlayerTurn]=Bank.add(playerBalance[PlayerTurn], 200);}
                    else{
-                       gui.displayChanceCard("you have landed on the loose money field. Unfortunately the field is empty");
+                       gui.displayChanceCard(read[30]);
                    }
                }
                if(currentField[PlayerTurn]==8){
-                   gui.displayChanceCard("You have landed on the 'deposit cash' field. 200 has been deducted from your account");
+                   gui.displayChanceCard(read[31]);
                løsepenge=løsepenge+200;
                playerBalance[PlayerTurn]=Bank.deduct(playerBalance[PlayerTurn], 200);
                }
                if(currentField[PlayerTurn]==12){
-                   gui.displayChanceCard("you get an extra hit");
+                   gui.displayChanceCard(read[32]);
                    extra=true;
                }
 
 
                switch(currentField[PlayerTurn]){
-                   case 1,2,3,4,5,6,7,8,9,10,11,13,14,15:  gui.showMessage(playername[PlayerTurn] + ", your balance is now " + playerBalance[PlayerTurn]);
+                   case 1,2,3,4,5,6,7,8,9,10,11,13,14,15:  gui.showMessage(playername[PlayerTurn] + read[21] + " " + playerBalance[PlayerTurn]);
                }
 
                if(playerBalance[PlayerTurn]<=0){
                    lose=true;
-                   gui.showMessage(playername[PlayerTurn-1] + "'s balance has fallen below 0");
+                   gui.showMessage(playername[PlayerTurn-1] + read[33]);
                }
                if(!extra){
                PlayerTurn++;}
@@ -294,7 +294,7 @@ GUI gui = new GUI(fields, Color.green);
                 temp=playerBalance[i];
             }
         }
-        gui.showMessage("The winner is player " + win);
+        gui.showMessage(read[34] + " " + win);
 
         }}
 

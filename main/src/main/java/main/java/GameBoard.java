@@ -2,6 +2,7 @@ package main.java;
 import gui_fields.*;
 import gui_main.GUI;
 
+import javax.xml.stream.events.StartDocument;
 import java.awt.*;
 import java.io.*;
 
@@ -107,11 +108,11 @@ return fields;
             e.printStackTrace();
         }
         fields[0]=new GUI_Start();
-        fields[0].setTitle(read[6]);
-        fields[0].setSubText(read[51]);
+        fields[0].setTitle("Start");
+        fields[0].setSubText("receive 200");
         fields[0].setBackGroundColor(Color.white);
         fields[1]=new GUI_Street();
-        fields[1].setTitle(read[52]);
+        fields[1].setTitle("Cinema");
         fields[1].setSubText("200kr");
         fields[1].setBackGroundColor(Color.blue);
         fields[2]=new GUI_Chance();
