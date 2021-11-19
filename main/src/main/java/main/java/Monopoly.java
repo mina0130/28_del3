@@ -8,6 +8,9 @@ public class Monopoly {
 
     public static void main(String[] args) {
         String wantToBuy;
+        for (int i = 0; i < GameBoard.read.length; i++) {
+            GameBoard.read[i] = "";
+        }
         GUI_Field[] fields = GameBoard.SetFields();
         boolean extra=false;
         int løsepenge=0;
@@ -18,34 +21,36 @@ GUI gui = new GUI(fields, Color.green);
         int sum, dice1throw, dice2throw, totalplayers, previousThrow=0;
         GameBoard.SetIsOwnable();
         boolean button=gui.getUserLeftButtonPressed("Choose language", "English", "Dansk");
-        String[] read = new String[54];
+        String[] read = new String[63];
         String file;
         if(button==true){
-            file = "C:\\Users\\minah\\Documents\\University\\CDIO\\oversættelse-til-engelsk.txt";
-           fields=GameBoard.SetFieldsEnglish(file);
-            gui = new GUI(fields, Color.green);
+            file = "main/src/main/resources/oversættelse-til-engelsk.txt";
+      //     fields=GameBoard.SetFieldsEnglish(file);
         }
         else {
-            file= "C:\\Users\\minah\\Documents\\University\\Introductory Programming\\oversættelse-til-dansk";
+            file= "main/src/main/resources/oversættelse-til-dansk.txt";
         }
-            BufferedReader reader = null;
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader(file));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        for(int i=0; i<read.length; i++){
             try {
-                reader = new BufferedReader(new FileReader(file));
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            for(int i=0; i<51; i++){
-                try {
-                    read[i] = reader.readLine();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            try {
-                reader.close();
+                read[i] = reader.readLine();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+        try {
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        GameBoard.read = read;
+        fields=GameBoard.SetFields();
+        gui = new GUI(fields, Color.green);
 
 
         //her laver vi players
