@@ -74,6 +74,7 @@ GUI gui = new GUI(fields, Color.green);
            playerBalance[i]=3500;
         }
 
+
             //deciding who starts
         gui.showMessage(read[3]);
             for(int i=0; i<totalplayers; i++){
@@ -279,7 +280,7 @@ GUI gui = new GUI(fields, Color.green);
 
                if(playerBalance[PlayerTurn]<=0){
                    lose=true;
-                   gui.showMessage(playername[PlayerTurn-1] + read[33]);
+                   gui.showMessage(playername[PlayerTurn] + read[33]);
                }
                if(!extra){
                PlayerTurn++;}
@@ -290,13 +291,19 @@ GUI gui = new GUI(fields, Color.green);
         int temp=0, win=0;
         for(int i=0; i<totalplayers; i++){
             if(playerBalance[i]>temp){
-                win=i+1;
+                win=playerBalance[i];
                 temp=playerBalance[i];
+            }}
+            gui.showMessage(read[34] + " ");
+            for(int i=0; i<totalplayers; i++){
+                if(playerBalance[i]==win){
+                    gui.showMessage(playername[i]);
+                }
             }
         }
-        gui.showMessage(read[34] + " " + win);
 
-        }}
+
+        }
 
 
 
