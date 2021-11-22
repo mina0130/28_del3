@@ -4,15 +4,15 @@ import gui_fields.GUI_Player;
 import gui_main.GUI;
 
 import java.awt.*;
-import java.util.*;
 public class Monopoly {
 
     public static void main(String[] args) {
         String wantToBuy;
 
         GUI_Field[] fields = GameBoard.SetFields();
+        boolean extra=false;
+        int løsepenge=0;
 GUI gui = new GUI(fields, Color.green);
-        Scanner scanner = new Scanner(System.in);
         Die die = new Die();
         boolean lose=false; // bliver true når en spiller har tabt, dvs spillet er slut
         int PlayerTurn=1; //1,2,3 eller 4, afhængig af vis tur det er
@@ -86,17 +86,67 @@ GUI gui = new GUI(fields, Color.green);
             gui.displayChanceCard(playername[PlayerTurn] + ", You are now on the " + GameBoard.getTitle(currentField[PlayerTurn]) + " field");
                gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn],true );
 
-
+            int card;
+            if(currentField[PlayerTurn]==2 | currentField[PlayerTurn]==6 | currentField[PlayerTurn]==10 | currentField[PlayerTurn]==14) {
+                die.roll();
+                card = die.getDice();
+                die.roll();
+                card = card + die.getDice();
+                switch (card) {
+                    case 2:
+                        gui.displayChanceCard("Ryk til start modtag 200");
+                        currentField[PlayerTurn] = 0;
+                        break;
+                    case 3:
+                        gui.displayChanceCard("Ryk til betalingsfeltet");
+                        currentField[PlayerTurn] = 8;
+                        break;
+                    case 4:
+                        gui.displayChanceCard("Ryk til bowlingcenter");
+                        currentField[PlayerTurn] = 15;
+                        break;
+                    case 5:
+                        gui.displayChanceCard("Ryk til løsepenge");
+                        currentField[PlayerTurn] = 4;
+                        break;
+                    case 6:
+                        gui.displayChanceCard("Du har tabt 500");
+                        playerBalance[PlayerTurn] = Bank.deduct(playerBalance[PlayerTurn], 500);
+                        break;
+                    case 7:
+                        gui.displayChanceCard("du har modtaget 500");
+                        playerBalance[PlayerTurn] = Bank.add(playerBalance[PlayerTurn], 500);
+                        break;
+                    case 8:
+                        gui.displayChanceCard("du har tabt 100");
+                        playerBalance[PlayerTurn] = Bank.deduct(playerBalance[PlayerTurn], 100);
+                        break;
+                    case 9:
+                        gui.displayChanceCard("du har modtaget 50");
+                        playerBalance[PlayerTurn] = Bank.add(playerBalance[PlayerTurn], 50);
+                        break;
+                    case 10:
+                        gui.displayChanceCard("Ryk 2 felter tilbage");
+                        currentField[PlayerTurn] = currentField[PlayerTurn] - 2;
+                        break;
+                    case 11:
+                        gui.displayChanceCard("eksta tur");
+                        extra = true;
+                        break;
+                    case 12:
+                        gui.displayChanceCard("intet sker :)");
+                        break;
+                }
+            }
                if(currentField[PlayerTurn]==0){
                    playerBalance[PlayerTurn]=Bank.add(playerBalance[PlayerTurn], 200);
                    gui.displayChanceCard("You receive 200 cash on start");
-                   gui.showMessage(playername[PlayerTurn] + ", your balance is now " + playerBalance[PlayerTurn]);
                }
                if(GameBoard.getIsOwnable(currentField[PlayerTurn])){
                    if(GameBoard.getIsOwned(currentField[PlayerTurn])){
-                       gui.showMessage("the field is owned by player " + playername[GameBoard.getOwnedBy(currentField[PlayerTurn])] + ". 200 rent has been deducted from your account");
-                       playerBalance[PlayerTurn]=Bank.deduct(playerBalance[PlayerTurn], 200);
-                       playerBalance[GameBoard.getOwnedBy(currentField[PlayerTurn])]=Bank.add(playerBalance[GameBoard.getOwnedBy(currentField[PlayerTurn])], 200);
+                       gui.showMessage("the field is owned by player " + playername[GameBoard.getOwnedBy(currentField[PlayerTurn])] + ". " + GameBoard.getRent(currentField[PlayerTurn]) + " rent has been deducted from your account");
+                       playerBalance[PlayerTurn]=Bank.deduct(playerBalance[PlayerTurn], GameBoard.getRent(currentField[PlayerTurn]));
+                       playerBalance[GameBoard.getOwnedBy(currentField[PlayerTurn])]=Bank.add(playerBalance[GameBoard.getOwnedBy(currentField[PlayerTurn])], GameBoard.getRent(currentField[PlayerTurn]));
                    }
                    else if(!GameBoard.getIsOwned(currentField[PlayerTurn])){
                       wantToBuy=gui.getUserString("do you want to buy " + GameBoard.getTitle(currentField[PlayerTurn]) + " for " + GameBoard.getPrice(currentField[PlayerTurn]) + "? Type 'yes' or 'no'" );
@@ -108,18 +158,37 @@ GUI gui = new GUI(fields, Color.green);
                           GameBoard.setOwnedBy(currentField[PlayerTurn], PlayerTurn);
                       }
                    }
-                   gui.showMessage(playername[PlayerTurn] + ", your balance is now " + playerBalance[PlayerTurn]);
                 }
+               if(currentField[PlayerTurn]==4){
+                   if(løsepenge>=200){
+                   gui.displayChanceCard("You have landed on the loose money field. 200 has been added to your balance");
+                   løsepenge=løsepenge-200;
+                   playerBalance[PlayerTurn]=Bank.add(playerBalance[PlayerTurn], 200);}
+                   else{
+                       gui.displayChanceCard("you have landed on the loose money field. Unfortunately the field is empty");
+                   }
+               }
+               if(currentField[PlayerTurn]==8){
+                   gui.displayChanceCard("You have landed on the 'deposit cash' field. 200 has been deducted from your account");
+               løsepenge=løsepenge+200;
+               playerBalance[PlayerTurn]=Bank.deduct(playerBalance[PlayerTurn], 200);
+               }
                if(currentField[PlayerTurn]==12){
                    gui.displayChanceCard("you get an extra hit");
-                   PlayerTurn--;
+                   extra=true;
+               }
+
+
+               switch(currentField[PlayerTurn]){
+                   case 1,2,3,4,5,6,7,8,9,10,11,13,14,15:  gui.showMessage(playername[PlayerTurn] + ", your balance is now " + playerBalance[PlayerTurn]);
                }
 
                if(playerBalance[PlayerTurn]<=0){
                    lose=true;
+                   gui.showMessage(playername[PlayerTurn-1] + "'s balance has fallen below 0");
                }
-               PlayerTurn++;
-               gui.showMessage(playername[PlayerTurn-1] + "'s balance has fallen below 0");
+               if(!extra){
+               PlayerTurn++;}
             }
 
         //deciding who wins

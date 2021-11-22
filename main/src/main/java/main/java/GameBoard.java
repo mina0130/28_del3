@@ -135,31 +135,31 @@ public static void SetIsOwnable(){
  public static boolean getIsOwned(int fieldNumber) {return isOwned[fieldNumber]; }
  static int[] price = new int[16];
 
- {
-  price[1] = 200;
-  price [3] = 200;
-  price [5] = 300;
-  price [7] = 300;
-  price [9] = 400;
-  price [11] = 400;
-  price [13] = 500;
-  price [15] = 500;
- }
 
- public static int getPrice(int fieldNumber){return price[fieldNumber]; }
+ public static int getPrice(int fieldNumber){
+     price[1] = 200;
+     price [3] = 200;
+     price [5] = 300;
+     price [7] = 300;
+     price [9] = 400;
+     price [11] = 400;
+     price [13] = 500;
+     price [15] = 500;
+     return price[fieldNumber]; }
 
- static int[] rent = new int[16]; {
-  rent[1] = 200;
-  rent[3] = 200;
-  rent[5] = 300;
-  rent[7] = 300;
-  rent[9] = 400;
-  rent[11] = 400;
-  rent[13] = 500;
-  rent[15] = 500;
- }
 
- public static int getRent(int fieldNumber){return rent[fieldNumber]; }
+
+ public static int getRent(int fieldNumber){
+     int[] rent = new int[16]; {
+         rent[1] = 200;
+         rent[3] = 200;
+         rent[5] = 300;
+         rent[7] = 300;
+         rent[9] = 400;
+         rent[11] = 400;
+         rent[13] = 500;
+         rent[15] = 500;
+     }return rent[fieldNumber]; }
 
  static int[] ownedBy = new int[16]; {
   ownedBy[1] = 0;
