@@ -2,81 +2,93 @@ package main.java;
 import gui_fields.*;
 import gui_main.GUI;
 
+import javax.xml.stream.events.StartDocument;
 import java.awt.*;
+import java.io.*;
 
 public class GameBoard {
 
 public static GUI_Field[] fields = new GUI_Field[16];
+
+public static String file;
+public static String[] read = new String[86];
+
+   static BufferedReader reader = null;
+
 
 // public void settingcar(GUI_Player player){
  //fields[0].setCar(player, true);}
 
  public static gui_fields.GUI_Field[] SetFields(){
      fields[0]=new GUI_Start();
-     fields[0].setTitle("Start");
-     fields[0].setSubText("Modtag 200kr");
+     fields[0].setTitle(read[65]);
+     fields[0].setSubText(read[66]);
      fields[0].setBackGroundColor(Color.white);
      fields[1]=new GUI_Street();
-  fields[1].setTitle("Biografen");
-  fields[1].setSubText("200kr");
+  fields[1].setTitle(read[67]);
+  fields[1].setSubText(read[68]);
   fields[1].setBackGroundColor(Color.blue);
   fields[2]=new GUI_Chance();
-  fields[2].setTitle("CHANCE?");
+  fields[2].setTitle(read[69]);
   fields[2].setSubText("");
   fields[2].setBackGroundColor(Color.orange);
   fields[3]=new GUI_Street();
-  fields[3].setTitle("Pizzaria");
-  fields[3].setSubText("200kr");
+  fields[3].setTitle(read[70]);
+  fields[3].setSubText(read[68]);
   fields[3].setBackGroundColor(Color.blue);
-  fields[4]=new GUI_Tax();
-  fields[4].setTitle("Jernbane!");
-  fields[4].setSubText("Du har nået jernbanen, du får en EKSTRA tur");
-  fields[4].setBackGroundColor(Color.green);
+  fields[12]=new GUI_Tax();
+  fields[12].setTitle(read[71]);
+  fields[12].setSubText(read[72]);
+  fields[12].setBackGroundColor(Color.green);
   fields[5]=new GUI_Street();
-  fields[5].setTitle("Museet");
-  fields[5].setSubText("300kr");
+  fields[5].setTitle(read[73]);
+  fields[5].setSubText(read[74]);
   fields[5].setBackGroundColor(Color.blue);
   fields[6]=new GUI_Chance();
-  fields[6].setTitle("CHANCE?");
+  fields[6].setTitle(read[69]);
   fields[6].setSubText("");
   fields[6].setBackGroundColor(Color.orange);
   fields[7]=new GUI_Street();
-  fields[7].setTitle("Tivoli");
-  fields[7].setSubText("300kr");
+  fields[7].setTitle(read[75]);
+  fields[7].setSubText(read[74]);
   fields[7].setBackGroundColor(Color.blue);
   fields[8]=new GUI_Tax();
-  fields[8].setTitle("Betal 200kr!");
-  fields[8].setSubText("Du skal dsv betale en vejafgift på 200kr");
+  fields[8].setTitle(read[76]);
+  fields[8].setSubText(read[77]);
   fields[8].setBackGroundColor(Color.red);
   fields[9]=new GUI_Street();
-  fields[9].setTitle("Casino");
-  fields[9].setSubText("400kr");
+  fields[9].setTitle(read[78]);
+  fields[9].setSubText(read[79]);
   fields[9].setBackGroundColor(Color.blue);
   fields[10]=new GUI_Chance();
-  fields[10].setTitle("CHANCE?");
+  fields[10].setTitle(read[69]);
   fields[10].setSubText("");
   fields[10].setBackGroundColor(Color.orange);
   fields[11]=new GUI_Street();
-  fields[11].setTitle("Zoo");
-  fields[11].setSubText("400kr");
+  fields[11].setTitle(read[80]);
+  fields[11].setSubText(read[79]);
   fields[11].setBackGroundColor(Color.blue);
-  fields[12]=new GUI_Tax();
-  fields[12].setTitle("Løsepenge");
-  fields[12].setSubText("Tillykke du modtager penge");
-  fields[12].setBackGroundColor(Color.cyan);
+  fields[4]=new GUI_Tax();
+  fields[4].setTitle(read[81]);
+  fields[4].setSubText(read[82]);
+  fields[4].setBackGroundColor(Color.cyan);
   fields[13]=new GUI_Street();
-  fields[13].setTitle("Vandland");
-  fields[13].setSubText("500kr");
+  fields[13].setTitle(read[83]);
+  fields[13].setSubText(read[84]);
   fields[13].setBackGroundColor(Color.blue);
   fields[14]=new GUI_Chance();
-  fields[14].setTitle("CHANCE?");
+  fields[14].setTitle(read[69]);
   fields[14].setSubText("");
   fields[14].setBackGroundColor(Color.orange);
   fields[15]=new GUI_Street();
-  fields[15].setTitle("Bowlingcenter");
-  fields[15].setSubText("500kr");
+  fields[15].setTitle(read[85]);
+  fields[15].setSubText(read[84]);
   fields[15].setBackGroundColor(Color.blue);
 return fields;
+ }
+
+    public String toString(){
+     return fields.toString();
  }
 
  public static String getTitle(int fieldnumber){
@@ -127,7 +139,6 @@ public static void SetIsOwnable(){
  }
 
  public static void setIsOwned(int fieldNumber) {
-  int number = fieldNumber;
   isOwned[fieldNumber] = true;
 
  }
@@ -178,30 +189,6 @@ public static void SetIsOwnable(){
  }
 
  public static int getOwnedBy(int fieldNumber) {return ownedBy[fieldNumber]; }
-
- //felter i array
-  {
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street();
-         new GUI_Street(); };
-
- //tekst til felter
-
-
- public void setFieldsSubText (int fieldNumber, String subText) {fields[fieldNumber].setSubText(subText); }
 
 }
 
