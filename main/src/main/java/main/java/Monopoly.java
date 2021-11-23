@@ -4,14 +4,14 @@ import gui_fields.GUI_Player;
 import gui_main.GUI;
 import java.awt.*;
 import java.io.*;
+import java.util.Arrays;
+
 public class Monopoly {
 
     public static void main(String[] args) {
         String wantToBuy;
         String file;
-        for (int i = 0; i < GameBoard.read.length; i++) {
-            GameBoard.read[i] = "";
-        }
+        Arrays.fill(GameBoard.read, "");
         GUI_Field[] fields = GameBoard.SetFields();
         boolean extra=false;
         int løsepenge=0;
@@ -23,7 +23,7 @@ GUI gui = new GUI(fields, Color.green);
         GameBoard.SetIsOwnable();
         boolean button=gui.getUserLeftButtonPressed("Choose language", "English", "Dansk");
         String[] read = new String[86];
-        if(button==true){
+        if(button){
             file = "main/src/main/resources/oversættelse-til-engelsk.txt";
       //     fields=GameBoard.SetFieldsEnglish(file);
         }
@@ -38,6 +38,7 @@ GUI gui = new GUI(fields, Color.green);
         }
         for(int i=0; i<read.length; i++){
             try {
+                assert reader != null;
                 read[i] = reader.readLine();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -137,11 +138,11 @@ GUI gui = new GUI(fields, Color.green);
                 card = card + die.getDice();
 
                 switch (card) {
-                    case 2:
+                    case 2 -> {
                         gui.displayChanceCard(read[9]);
                         gui.getFields()[currentField[PlayerTurn]].removeAllCars();
-                        for(int i=0; i<totalplayers; i++){
-                            if(i!=PlayerTurn) {
+                        for (int i = 0; i < totalplayers; i++) {
+                            if (i != PlayerTurn) {
                                 if (currentField[i] == currentField[PlayerTurn]) {
                                     gui.getFields()[currentField[i]].setCar(player[i], true);
                                 }
@@ -149,12 +150,12 @@ GUI gui = new GUI(fields, Color.green);
                         }
                         currentField[PlayerTurn] = 0;
                         gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn], true);
-                        break;
-                    case 3:
+                    }
+                    case 3 -> {
                         gui.displayChanceCard(read[10]);
                         gui.getFields()[currentField[PlayerTurn]].removeAllCars();
-                        for(int i=0; i<totalplayers; i++){
-                            if(i!=PlayerTurn) {
+                        for (int i = 0; i < totalplayers; i++) {
+                            if (i != PlayerTurn) {
                                 if (currentField[i] == currentField[PlayerTurn]) {
                                     gui.getFields()[currentField[i]].setCar(player[i], true);
                                 }
@@ -162,12 +163,12 @@ GUI gui = new GUI(fields, Color.green);
                         }
                         currentField[PlayerTurn] = 8;
                         gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn], true);
-                        break;
-                    case 4:
+                    }
+                    case 4 -> {
                         gui.displayChanceCard(read[11]);
                         gui.getFields()[currentField[PlayerTurn]].removeAllCars();
-                        for(int i=0; i<totalplayers; i++){
-                            if(i!=PlayerTurn) {
+                        for (int i = 0; i < totalplayers; i++) {
+                            if (i != PlayerTurn) {
                                 if (currentField[i] == currentField[PlayerTurn]) {
                                     gui.getFields()[currentField[i]].setCar(player[i], true);
                                 }
@@ -175,12 +176,12 @@ GUI gui = new GUI(fields, Color.green);
                         }
                         currentField[PlayerTurn] = 15;
                         gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn], true);
-                        break;
-                    case 5:
+                    }
+                    case 5 -> {
                         gui.displayChanceCard(read[12]);
                         gui.getFields()[currentField[PlayerTurn]].removeAllCars();
-                        for(int i=0; i<totalplayers; i++){
-                            if(i!=PlayerTurn) {
+                        for (int i = 0; i < totalplayers; i++) {
+                            if (i != PlayerTurn) {
                                 if (currentField[i] == currentField[PlayerTurn]) {
                                     gui.getFields()[currentField[i]].setCar(player[i], true);
                                 }
@@ -188,28 +189,28 @@ GUI gui = new GUI(fields, Color.green);
                         }
                         currentField[PlayerTurn] = 4;
                         gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn], true);
-                        break;
-                    case 6:
+                    }
+                    case 6 -> {
                         gui.displayChanceCard(read[13]);
                         playerBalance[PlayerTurn] = Bank.deduct(playerBalance[PlayerTurn], 500);
-                        break;
-                    case 7:
+                    }
+                    case 7 -> {
                         gui.displayChanceCard(read[14]);
                         playerBalance[PlayerTurn] = Bank.add(playerBalance[PlayerTurn], 500);
-                        break;
-                    case 8:
+                    }
+                    case 8 -> {
                         gui.displayChanceCard(read[15]);
                         playerBalance[PlayerTurn] = Bank.deduct(playerBalance[PlayerTurn], 100);
-                        break;
-                    case 9:
+                    }
+                    case 9 -> {
                         gui.displayChanceCard(read[16]);
                         playerBalance[PlayerTurn] = Bank.add(playerBalance[PlayerTurn], 50);
-                        break;
-                    case 10:
+                    }
+                    case 10 -> {
                         gui.displayChanceCard(read[17]);
                         gui.getFields()[currentField[PlayerTurn]].removeAllCars();
-                        for(int i=0; i<totalplayers; i++){
-                            if(i!=PlayerTurn) {
+                        for (int i = 0; i < totalplayers; i++) {
+                            if (i != PlayerTurn) {
                                 if (currentField[i] == currentField[PlayerTurn]) {
                                     gui.getFields()[currentField[i]].setCar(player[i], true);
                                 }
@@ -217,14 +218,12 @@ GUI gui = new GUI(fields, Color.green);
                         }
                         currentField[PlayerTurn] = currentField[PlayerTurn] - 2;
                         gui.getFields()[currentField[PlayerTurn]].setCar(player[PlayerTurn], true);
-                        break;
-                    case 11:
+                    }
+                    case 11 -> {
                         gui.displayChanceCard(read[18]);
                         extra = true;
-                        break;
-                    case 12:
-                        gui.displayChanceCard(read[19]);
-                        break;
+                    }
+                    case 12 -> gui.displayChanceCard(read[19]);
                 }
                 gui.showMessage(" ");
             }
@@ -274,9 +273,9 @@ GUI gui = new GUI(fields, Color.green);
                }
 
 
-               switch(currentField[PlayerTurn]){
-                   case 1,2,3,4,5,6,7,8,9,10,11,13,14,15:  gui.showMessage(playername[PlayerTurn] + read[21] + " " + playerBalance[PlayerTurn]);
-               }
+            switch (currentField[PlayerTurn]) {
+                case 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15 -> gui.showMessage(playername[PlayerTurn] + read[21] + " " + playerBalance[PlayerTurn]);
+            }
 
                if(playerBalance[PlayerTurn]<=0){
                    lose=true;
