@@ -12,7 +12,7 @@ public class Monopoly {
         GUI_Field[] fields = GameBoard.SetFields();
         boolean extra=false;
         int løsepenge=0;
-GUI gui = new GUI(fields, Color.green);
+        GUI gui = new GUI(fields, Color.green);
         Die die = new Die();
         boolean lose=false; // bliver true når en spiller har tabt, dvs spillet er slut
         int PlayerTurn=1; //1,2,3 eller 4, afhængig af vis tur det er
